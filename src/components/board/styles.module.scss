@@ -1,0 +1,19 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  align-content: center;
+  justify-content: center;
+  @media (max-width: 425px) {
+    grid-template-columns: repeat(auto-fit, 100%);
+  }
+
+  .col {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  .list{
+    border: solid 1px blue;
+    min-height: 100px;
+  }
+}
