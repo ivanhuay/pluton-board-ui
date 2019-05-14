@@ -1,13 +1,12 @@
 import React,{useState} from 'react';
 import styles from './styles.module.scss';
 const defaultLists = [
-  {title: 'todo', list:['drag & drop items']},
-  {title: 'in progress', list:[]},
-  // {title: 'random', list:[]},
-  // {title: 'random2', list:[]},
-  {title: 'done', list:[]},
+  {title: 'todo', list:[]},
+  {title: 'in progress', list:['use new hooks']},
+  {title: 'random', list:[]},
+  {title: 'done', list:['drag & drop items','grid-colomns', 'flex-columns', 'add some css']},
 ];
-const Board = ({}) => {
+const FlexBoard = ({}) => {
     const [lists, setLists] = useState(defaultLists);
     const [movingItem, setMovingItem] = useState({fromIndex:0, task:''});
     const onDragStart = (event, taskName, listIndex) => {
@@ -23,10 +22,12 @@ const Board = ({}) => {
         setLists(listCopy);
   	}
     return (
-      <div className={styles.root} style={{'grid-template-columns': 'repeat('+lists.length+',1fr)'}}>
+      <div className={styles.root} >
         {lists && lists.map((list, index)=>{
           return <div key={index} className={styles.col}>
-              <h3>{list.title}</h3>
+              <div className={styles.title}>
+                <h3>{list.title}</h3>
+              </div>
               <div onDragOver={(e)=>{onDragOver(e, index)}} onDrop={(e)=>{onDrop(e, index)}} className={styles.list}>
                   {list.list.map((item)=>(
                     <div key={item} onDragStart={(e)=>{onDragStart(e,item, index)}} className={styles.draggableItem} draggable="true">
@@ -40,4 +41,4 @@ const Board = ({}) => {
     );
 }
 
-export default Board;
+export default FlexBoard;

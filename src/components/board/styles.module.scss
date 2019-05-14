@@ -1,6 +1,5 @@
 .root {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
   align-content: center;
   justify-content: center;
@@ -15,5 +14,8 @@
   .list{
     border: solid 1px blue;
     min-height: 100px;
+  }
+  .draggableItem{
+    border: 1px solid black;
   }
 }
