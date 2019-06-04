@@ -1,6 +1,7 @@
 
 const initialState = {
-  isOpen: false
+  isOpen: false,
+  value:''
 }
 export default function ModalReducer(state = initialState, action) {
   switch (action.type) {
@@ -13,6 +14,16 @@ export default function ModalReducer(state = initialState, action) {
       return {
         ...state,
         isOpen: false
+      }
+    case 'UPDATE_VALUE':
+      return {
+        ...state,
+        value: action.value
+      }
+    case 'CLEAR_VALUE':
+      return {
+        ...state,
+        value: ''
       }
     default:
       return state;
