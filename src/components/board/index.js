@@ -1,26 +1,25 @@
-import React,{useState} from 'react';
+import React from 'react';
 import styles from './styles.module.scss';
-const defaultLists = [
-  {title: 'todo', list:['drag & drop items']},
-  {title: 'in progress', list:[]},
-  // {title: 'random', list:[]},
-  // {title: 'random2', list:[]},
-  {title: 'done', list:[]},
-];
+import { useSelector, useDispatch } from 'react-redux';
+import {setList, setMovingItem} from '../../actions/boards';
+
 const Board = ({}) => {
-    const [lists, setLists] = useState(defaultLists);
-    const [movingItem, setMovingItem] = useState({fromIndex:0, task:''});
+    const dispatch = useDispatch();
+    const lists = useSelector(state => state.boards.lists);
+    const movingItem = useSelector(state => state.boards.movingItem);
+    const fromIndex = useSelector(state => state.boards.fromIndex);
+
     const onDragStart = (event, taskName, listIndex) => {
-    	setMovingItem({task:taskName, fromIndex: listIndex});
+    	dispatch(setMovingItem(taskName,listIndex));
   	}
   	const onDragOver = (event) => {
   	    event.preventDefault();
   	}
     const onDrop = (event, listIndex) => {
         let listCopy = Object.assign([], lists);
-        listCopy[movingItem.fromIndex].list = listCopy[movingItem.fromIndex].list.filter((elm)=>elm!= movingItem.task);
-        listCopy[listIndex].list.push(movingItem.task);
-        setLists(listCopy);
+        listCopy[fromIndex].list = listCopy[fromIndex].list.filter((elm)=>elm!= movingItem);
+        listCopy[listIndex].list.push(movingItem);
+        dispatch(setList(listCopy));
   	}
     return (
       <div className={styles.root} style={{'grid-template-columns': 'repeat('+lists.length+',1fr)'}}>

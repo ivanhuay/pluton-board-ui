@@ -6,12 +6,12 @@ import Modal from '../../components/modal';
 import styles from './styles.module.scss';
 import {useDispatch, useSelector} from 'react-redux';
 import {getBoard} from '../../actions/boards';
-const Home = () => {
+const BoardView = ({match}) => {
   const dispatch = useDispatch();
   const boards = useSelector(state => state.boards);
   useEffect(() => {
     if (!boards.title) {
-      dispatch(getBoard("5cf5621669130a15faf046e1"))
+      dispatch(getBoard(match.params.boardId));
     }
   });
   return (<div className={styles.root}>
@@ -29,4 +29,4 @@ const Home = () => {
   </div>);
 }
 
-export default Home;
+export default BoardView;
