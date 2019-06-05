@@ -1,28 +1,21 @@
-import React, {useEffect} from 'react';
-import Board from '../../components/board';
-import FlexBoard from '../../components/flex-board';
-import BoardHeader from '../../components/board-header';
-import Modal from '../../components/modal';
+import React, { useEffect } from 'react';
+import BoardsList from '../../components/boards-list';
 import styles from './styles.module.scss';
-import {useDispatch, useSelector} from 'react-redux';
-import {getBoard} from '../../actions/boards';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBoardLists } from '../../actions/boards';
 const Home = () => {
   const dispatch = useDispatch();
   const boards = useSelector(state => state.boards);
   useEffect(() => {
-    if (!boards.title) {
-      dispatch(getBoard("5cf5621669130a15faf046e1"))
-    }
-  });
+    dispatch(getBoardLists());
+  }, []);
   return (<div className={styles.root}>
     <div className={styles.container}>
+      <h1>Boards List</h1>
       {
-        !boards.loadingBoard
-          ? <>
-            <BoardHeader />
-            <h1>{boards.title}</h1>
-            < FlexBoard /> <Board/>
-            <Modal/></>
+        !boards.loadingBoardList
+          ?
+          <BoardsList boards={boards.boardList} />
           : <p>loading...</p>
       }
     </div>

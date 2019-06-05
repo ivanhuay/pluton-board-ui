@@ -12,10 +12,23 @@ const initialState = {
   loadingBoard: true,
   loadingList: false,
   movingItem: null,
-  fromIndex: null
+  fromIndex: null,
+  boardList: [],
+  loadingBoardList: true
 }
 export default function BoardsReducer(state = initialState, action) {
   switch (action.type) {
+    case 'REQUEST_BOARDS_LIST':
+      return {
+        ...state,
+        loadingBoardList: true
+      };
+    case 'SUCCESS_BOARDS_LIST':
+      return {
+        ...state,
+        loadingBoardList: false,
+        boardList: action.data
+      }
     case 'REQUEST_BOARD':
       return {
         ...state,

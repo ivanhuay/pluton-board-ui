@@ -86,3 +86,23 @@ export const addTicket = (boardId, ticketTitle) => {
       });
   }
 }
+
+export const requestBoardsList = () => ({
+  type: 'REQUEST_BOARDS_LIST'
+});
+export const successBoardsList = (data) => ({
+  type: 'SUCCESS_BOARDS_LIST',
+  data
+});
+export const getBoardLists = (boardId, ticketTitle) => {
+  return (dispatch) => {
+    dispatch(requestAddTicket());
+    return fetch(`http://localhost:3000/api/boards`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        dispatch(successBoardsList(data));
+      });
+  }
+}
