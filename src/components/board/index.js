@@ -28,8 +28,8 @@ const Board = ({}) => {
               <h3>{list.title}</h3>
               <div onDragOver={(e)=>{onDragOver(e, index)}} onDrop={(e)=>{onDrop(e, index)}} className={styles.list}>
                   {list.list.map((item)=>(
-                    <div key={item} onDragStart={(e)=>{onDragStart(e,item, index)}} className={styles.draggableItem} draggable="true">
-                        <p>{item}</p>
+                    <div key={item._id} onDragStart={(e)=>{onDragStart(e,item, index)}} className={styles.draggableItem} draggable="true">
+                        <p>{item.title}</p>
                     </div>
                   ))}
               </div>

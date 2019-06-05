@@ -1,22 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './styles.module.scss'
 import {useSelector,useDispatch} from 'react-redux';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import {closeModal, updateValue} from '../../actions/modal'
-import {addList} from '../../actions/boards';
 const cx = classNames.bind(styles);
 
-const Modal = () => {
-  const dispatch = useDispatch();
-  const modal = useSelector(state => state.modal);
-  const boards = useSelector(state => state.boards);
-  return (<div onClick={()=>{dispatch(closeModal());}} className={cx('root',{open: modal.isOpen})}>
+const Modal = ({title, cta, callback, open, hide}) => {
+  const [value, setValue] = useState('');
+  return (<div onClick={()=>hide()} className={cx('root',{open: open})}>
     <div onClick={(event)=>event.stopPropagation()} className={cx('box')}>
-      <h2>Add List</h2>
-      <input type="text" onChange={(e)=>dispatch(updateValue(e.target.value))} value={modal.value}/>
-      <button onClick={()=>dispatch(addList(boards.data._id, modal.value))} className={cx('btn')}>Agregar</button>
+      <h2>{title}</h2>
+      <input type="text" onChange={(e)=>setValue(e.target.value)} value={value}/>
+      <button onClick={()=>callback(value)} className={cx('btn')}>{cta}</button>
     </div>
   </div>);
 }
+
+Modal.defaultProps = {
+  title: '',
+  cta: 'Add',
+  open: false,
+};
+
+Modal.propTypes = {
+  title: PropTypes.string,
+  cta: PropTypes.string,
+  open: PropTypes.bool,
+  callback: PropTypes.func.isRequired,
+  hide: PropTypes.func.isRequired,
+};
+
 
 export default Modal;

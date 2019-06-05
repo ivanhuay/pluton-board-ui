@@ -9,7 +9,7 @@ export const successBoard = data => ({
 export const getBoard = (id) => {
   return (dispatch) => {
     dispatch(requestBoard());
-    return fetch(`http://localhost:3000/api/boards/${id}/`)
+    return fetch(`http://localhost:3000/api/boards/${id}?populate=lists.list`)
       .then((response) => {
         return response.json();
       })
@@ -53,6 +53,35 @@ export const addList = (boardId, listName) => {
       })
       .then((data) => {
         dispatch(successAddList());
+        dispatch(getBoard(boardId));
+      });
+  }
+}
+
+export const requestAddTicket = () => ({
+  type: 'REQUEST_ADD_TICKET'
+});
+export const successAddTicket = () => ({
+  type: 'SUCCESS_ADD_TICKET'
+});
+export const addTicket = (boardId, ticketTitle) => {
+  return (dispatch) => {
+    dispatch(requestAddTicket());
+    return fetch(`http://localhost:3000/api/tickets/board/${boardId}`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: ticketTitle
+        })
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        dispatch(successAddTicket());
         dispatch(getBoard(boardId));
       });
   }
