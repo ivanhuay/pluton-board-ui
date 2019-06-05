@@ -9,6 +9,7 @@ const BoardList = ({boards}) => {
           {boards.map((board)=>(
             <li key={board._id}><Link to={`/board/${board._id}`}>{board.title}</Link></li>
           ))}
+          <li><Link className={styles.newBoard} to='/board/new'>New Board</Link></li>
       </ul>
     );
 }

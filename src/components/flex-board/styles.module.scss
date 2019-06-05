@@ -3,10 +3,11 @@ $white: #fefefe;
 .root {
   display: flex;
   justify-content: space-between;
+  margin: 0 -10px;
   .col {
     padding: 5px;
     width: 100%;
-    margin: 5px;
+    margin: 0 5px;
   }
   .list{
     border-radius: 5px;
