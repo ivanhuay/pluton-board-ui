@@ -106,3 +106,30 @@ export const getBoardLists = (boardId, ticketTitle) => {
       });
   }
 }
+
+export const requestCreateBoard = () => ({
+  type: 'REQUEST_CREATE_BOARD'
+});
+export const successCreateBoard = (data) => ({
+  type: 'SUCCESS_CREATE_BOARD',
+  data
+});
+export const createBoard = (boardData) => {
+  return (dispatch) => {
+    dispatch(requestCreateBoard());
+    return fetch(`http://localhost:3000/api/boards`,{
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(boardData)
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        dispatch(successCreateBoard(data));
+      });
+  }
+}

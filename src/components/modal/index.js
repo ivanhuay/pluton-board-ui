@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import {useSelector,useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import Input from '../input';
 const cx = classNames.bind(styles);
 
 const Modal = ({title, cta, callback, open, hide}) => {
@@ -10,7 +11,7 @@ const Modal = ({title, cta, callback, open, hide}) => {
   return (<div onClick={()=>hide()} className={cx('root',{open: open})}>
     <div onClick={(event)=>event.stopPropagation()} className={cx('box')}>
       <h2>{title}</h2>
-      <input type="text" onChange={(e)=>setValue(e.target.value)} value={value}/>
+      <Input type="text" onChange={(e)=>setValue(e.target.value)} value={value}/>
       <button onClick={()=>callback(value)} className={cx('btn')}>{cta}</button>
     </div>
   </div>);

@@ -11,6 +11,7 @@ const initialState = {
   data:{},
   loadingBoard: true,
   loadingList: false,
+  loadingCreateBoard: false,
   movingItem: null,
   fromIndex: null,
   boardList: [],
@@ -63,6 +64,16 @@ export default function BoardsReducer(state = initialState, action) {
       return {
         ...state,
         loadingList: false
+      }
+    case 'REQUEST_CREATE':
+      return {
+        ...state,
+        loadingCreateBoard: true
+      }
+    case 'SUCCESS_CREATE_BOARD':
+      return {
+        ...state,
+        loadingCreateBoard: false
       }
     default:
       return state;

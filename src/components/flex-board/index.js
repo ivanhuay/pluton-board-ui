@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import styles from './styles.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import {setList, setMovingItem} from '../../actions/boards';
