@@ -14,10 +14,8 @@ const BoardView = ({match}) => {
   const {isOpen, toggle} = useModal();
   const ticketModal = useModal();
   useEffect(() => {
-    if (!boards.title) {
-      dispatch(getBoard(match.params.boardId));
-    }
-  });
+    dispatch(getBoard(match.params.boardId));
+  }, match.params.boardId);
   return (<div className={styles.root}>
     <div className={styles.container}>
       {
