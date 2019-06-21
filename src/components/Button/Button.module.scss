@@ -1,0 +1,11 @@
+.root{
+  border: none;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 0 5px;
+  cursor: pointer;
+  &:hover{
+    color: white;
+    background: #ababab;
+  }
+}

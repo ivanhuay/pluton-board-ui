@@ -1,5 +1,4 @@
 import React from 'react';
-import {openModal} from '../../actions/modal';
 import styles from './styles.module.scss';
 import {Link} from 'react-router-dom';
 
