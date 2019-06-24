@@ -30,6 +30,7 @@ export default function BoardsReducer(state = initialState, action) {
         boardList: action.data
       }
     case 'REQUEST_BOARD':
+    case 'REQUEST_MOVE_TICKET':
       return {
         ...state,
         loadingBoard: true

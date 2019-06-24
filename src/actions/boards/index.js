@@ -133,3 +133,30 @@ export const createBoard = (boardData) => {
       });
   }
 }
+
+
+export const requestMoveTicket = () => ({
+  type: 'REQUEST_MOVE_TICKET'
+});
+export const successMoveTicket = (data) => ({
+  type: 'SUCCESS_MOVE_TICKET',
+  data
+});
+export const moveTicket = (boardId, ticketId, list) => {
+  return (dispatch) => {
+    dispatch(requestMoveTicket());
+    return fetch(`http://localhost:3000/api/boards/${boardId}/ticket/${ticketId}/${list}`,{
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        dispatch(getBoard(data._id));
+      });
+  }
+}

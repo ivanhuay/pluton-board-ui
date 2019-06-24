@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import {setList, setMovingItem} from '../../actions/boards';
+import {setList, setMovingItem, moveTicket} from '../../actions/boards';
 
 const FlexBoard = () => {
     const dispatch = useDispatch();
     const lists = useSelector(state => state.boards.lists);
+    const boardId = useSelector(state => state.boards.data._id);
     const movingItem = useSelector(state => state.boards.movingItem);
     const fromIndex = useSelector(state => state.boards.fromIndex);
 
@@ -19,6 +20,7 @@ const FlexBoard = () => {
         let listCopy = Object.assign({}, lists);
         listCopy[fromIndex] = listCopy[fromIndex].filter((elm)=>elm !== movingItem);
         listCopy[listName].push(movingItem);
+        dispatch(moveTicket(boardId, movingItem._id, listName));
         dispatch(setList(listCopy));
     }
     return (
