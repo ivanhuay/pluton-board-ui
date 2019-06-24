@@ -12,7 +12,6 @@ const BoardView = ({match}) => {
   const dispatch = useDispatch();
   const boards = useSelector(state => state.boards);
   const modal = useSelector(state => state.modal);
-  const {isOpen, toggle} = useModal();
   const ticketModal = useModal();
   useEffect(() => {
     dispatch(getBoard(match.params.boardId));
