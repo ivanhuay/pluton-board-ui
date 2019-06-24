@@ -3,40 +3,34 @@ import styles from './styles.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import {setList, setMovingItem} from '../../actions/boards';
 
-// const defaultLists = [
-//   {title: 'todo', list:[]},
-//   {title: 'in progress', list:['use new hooks']},
-//   {title: 'random', list:[]},
-//   {title: 'done', list:['drag & drop items','grid-colomns', 'flex-columns', 'add some css']},
-// ];
-const FlexBoard = ({}) => {
+const FlexBoard = () => {
     const dispatch = useDispatch();
     const lists = useSelector(state => state.boards.lists);
     const movingItem = useSelector(state => state.boards.movingItem);
     const fromIndex = useSelector(state => state.boards.fromIndex);
 
-    const onDragStart = (event, taskName, listIndex) => {
-      dispatch(setMovingItem(taskName,listIndex));
+    const onDragStart = (event, taskName, listName) => {
+      dispatch(setMovingItem(taskName,listName));
     }
     const onDragOver = (event) => {
         event.preventDefault();
     }
-    const onDrop = (event, listIndex) => {
-        let listCopy = Object.assign([], lists);
-        listCopy[fromIndex].list = listCopy[fromIndex].list.filter((elm)=>elm!= movingItem);
-        listCopy[listIndex].list.push(movingItem);
+    const onDrop = (event, listName) => {
+        let listCopy = Object.assign({}, lists);
+        listCopy[fromIndex] = listCopy[fromIndex].filter((elm)=>elm !== movingItem);
+        listCopy[listName].push(movingItem);
         dispatch(setList(listCopy));
     }
     return (
       <div className={styles.root} >
-        {lists && lists.map((list, index)=>{
-          return <div key={index} className={styles.col}>
+        {lists && Object.keys(lists).map((list)=>{
+          return <div key={list} className={styles.col}>
               <div className={styles.title}>
-                <h3>{list.title}</h3>
+                <h3>{list}</h3>
               </div>
-              <div onDragOver={(e)=>{onDragOver(e, index)}} onDrop={(e)=>{onDrop(e, index)}} className={styles.list}>
-                  {list.list.map((item)=>(
-                    <div key={item._id} onDragStart={(e)=>{onDragStart(e,item, index)}} className={styles.draggableItem} draggable="true">
+              <div onDragOver={(e)=>{onDragOver(e, list)}} onDrop={(e)=>{onDrop(e, list)}} className={styles.list}>
+                  {lists[list].map((item)=>(
+                    <div key={item._id} onDragStart={(e)=>{onDragStart(e,item, list)}} className={styles.draggableItem} draggable="true">
                         <p>{item.title}</p>
                     </div>
                   ))}

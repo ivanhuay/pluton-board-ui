@@ -1,10 +1,9 @@
 
-const defaultLists = [
-  {title: 'todo', list:[]},
-  {title: 'in progress', list:['use new hooks']},
-  {title: 'random', list:[]},
-  {title: 'done', list:['drag & drop items','grid-colomns', 'flex-columns', 'add some css']},
-];
+const defaultLists = {
+    'Todo': [],
+    'In Progress': [],
+    'Done': []
+};
 const initialState = {
   title: '',
   lists: defaultLists,
@@ -36,11 +35,14 @@ export default function BoardsReducer(state = initialState, action) {
         loadingBoard: true
       };
     case 'SUCCESS_BOARD':
+      const lists = {};
+      action.data.lists.forEach((key)=> lists[key] = []);
+      action.data.tickets.forEach((data)=> lists[data.list].push(data.ticket));
       return {
         ...state,
         loadingBoard: false,
         title: action.data.title,
-        lists: action.data.lists,
+        lists: lists,
         data: action.data
       }
     case 'SET_LIST':

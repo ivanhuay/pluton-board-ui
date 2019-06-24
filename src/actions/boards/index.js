@@ -9,7 +9,7 @@ export const successBoard = data => ({
 export const getBoard = (id) => {
   return (dispatch) => {
     dispatch(requestBoard());
-    return fetch(`http://localhost:3000/api/boards/${id}?populate=lists.list`)
+    return fetch(`http://localhost:3000/api/boards/${id}?populate=tickets.ticket`)
       .then((response) => {
         return response.json();
       })
@@ -38,14 +38,14 @@ export const successAddList = () => ({
 export const addList = (boardId, listName) => {
   return (dispatch) => {
     dispatch(requestBoard());
-    return fetch(`http://localhost:3000/api/boards/${boardId}/lists`, {
-        method: 'POST',
+    return fetch(`http://localhost:3000/api/boards/${boardId}`, {
+        method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          list: listName
+          lists: {$push: listName}
         })
       })
       .then((response) => {
