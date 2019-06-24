@@ -1,4 +1,3 @@
-
 const defaultLists = {
     'Todo': [],
     'In Progress': [],

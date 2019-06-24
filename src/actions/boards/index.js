@@ -1,3 +1,5 @@
+import history from '../../app-history';
+import {closeModal} from '../modal';
 export const requestBoard = () => ({
   type: 'REQUEST_BOARD'
 });
@@ -54,6 +56,7 @@ export const addList = (boardId, listName) => {
       .then((data) => {
         dispatch(successAddList());
         dispatch(getBoard(boardId));
+        dispatch(closeModal());
       });
   }
 }
@@ -130,6 +133,7 @@ export const createBoard = (boardData) => {
       })
       .then((data) => {
         dispatch(successCreateBoard(data));
+        history.push('/');
       });
   }
 }

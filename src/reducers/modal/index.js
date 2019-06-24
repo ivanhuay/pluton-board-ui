@@ -10,6 +10,11 @@ export default function ModalReducer(state = initialState, action) {
         ...state,
         isOpen: true
       };
+    case 'TOGGLE_MODAL':
+      return {
+        ...state,
+        isOpen: !state.isOpen
+      };
     case 'CLOSE_MODAL':
       return {
         ...state,
