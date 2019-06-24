@@ -9,7 +9,7 @@ export const successBoard = data => ({
 export const getBoard = (id) => {
   return (dispatch) => {
     dispatch(requestBoard());
-    return fetch(`http://localhost:3000/api/boards/${id}?populate=tickets.ticket`)
+    return fetch(`${process.env.REACT_APP_API_URL}/api/boards/${id}?populate=tickets.ticket`)
       .then((response) => {
         return response.json();
       })
@@ -38,7 +38,7 @@ export const successAddList = () => ({
 export const addList = (boardId, listName) => {
   return (dispatch) => {
     dispatch(requestBoard());
-    return fetch(`http://localhost:3000/api/boards/${boardId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/boards/${boardId}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
@@ -67,7 +67,7 @@ export const successAddTicket = () => ({
 export const addTicket = (boardId, ticketTitle) => {
   return (dispatch) => {
     dispatch(requestAddTicket());
-    return fetch(`http://localhost:3000/api/tickets/board/${boardId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/tickets/board/${boardId}`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -97,7 +97,7 @@ export const successBoardsList = (data) => ({
 export const getBoardLists = (boardId, ticketTitle) => {
   return (dispatch) => {
     dispatch(requestAddTicket());
-    return fetch(`http://localhost:3000/api/boards`)
+    return fetch(`${process.env.REACT_APP_API_URL}/api/boards`)
       .then((response) => {
         return response.json();
       })
@@ -117,7 +117,7 @@ export const successCreateBoard = (data) => ({
 export const createBoard = (boardData) => {
   return (dispatch) => {
     dispatch(requestCreateBoard());
-    return fetch(`http://localhost:3000/api/boards`,{
+    return fetch(`${process.env.REACT_APP_API_URL}/api/boards`,{
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -138,14 +138,11 @@ export const createBoard = (boardData) => {
 export const requestMoveTicket = () => ({
   type: 'REQUEST_MOVE_TICKET'
 });
-export const successMoveTicket = (data) => ({
-  type: 'SUCCESS_MOVE_TICKET',
-  data
-});
+
 export const moveTicket = (boardId, ticketId, list) => {
   return (dispatch) => {
     dispatch(requestMoveTicket());
-    return fetch(`http://localhost:3000/api/boards/${boardId}/ticket/${ticketId}/${list}`,{
+    return fetch(`${process.env.REACT_APP_API_URL}/api/boards/${boardId}/ticket/${ticketId}/${list}`,{
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
