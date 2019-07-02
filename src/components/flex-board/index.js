@@ -27,15 +27,17 @@ const FlexBoard = () => {
       <div className={styles.root} >
         {lists && Object.keys(lists).map((list)=>{
           return <div key={list} className={styles.col}>
-              <div className={styles.title}>
-                <h3>{list}</h3>
-              </div>
-              <div onDragOver={(e)=>{onDragOver(e, list)}} onDrop={(e)=>{onDrop(e, list)}} className={styles.list}>
-                  {lists[list].map((item)=>(
-                    <div key={item._id} onDragStart={(e)=>{onDragStart(e,item, list)}} className={styles.draggableItem} draggable="true">
-                        <p>{item.title}</p>
-                    </div>
-                  ))}
+              <div className={styles['list-container']}>
+                <div className={styles.title}>
+                  <h3>{list}</h3>
+                </div>
+                <div onDragOver={(e)=>{onDragOver(e, list)}} onDrop={(e)=>{onDrop(e, list)}} className={styles.list}>
+                    {lists[list].map((item)=>(
+                      <div key={item._id} onDragStart={(e)=>{onDragStart(e,item, list)}} className={styles.draggableItem} draggable="true">
+                          <p>{item.title}</p>
+                      </div>
+                    ))}
+                </div>
               </div>
             </div>
         })}

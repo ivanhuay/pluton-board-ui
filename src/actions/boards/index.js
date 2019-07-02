@@ -67,7 +67,7 @@ export const requestAddTicket = () => ({
 export const successAddTicket = () => ({
   type: 'SUCCESS_ADD_TICKET'
 });
-export const addTicket = (boardId, ticketTitle) => {
+export const addTicket = (boardId, data) => {
   return (dispatch) => {
     dispatch(requestAddTicket());
     return fetch(`${process.env.REACT_APP_API_URL}/api/tickets/board/${boardId}`, {
@@ -76,9 +76,7 @@ export const addTicket = (boardId, ticketTitle) => {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          title: ticketTitle
-        })
+        body: JSON.stringify(data)
       })
       .then((response) => {
         return response.json();

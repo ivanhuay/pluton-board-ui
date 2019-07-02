@@ -9,6 +9,11 @@ $white: #fefefe;
     width: 100%;
     margin: 0 5px;
   }
+  .list-container{
+    background-color: $grey-background;
+    border-radius: 5px;
+    padding-top: 2px;
+  }
   .list{
     border-radius: 5px;
     min-height: 200px;

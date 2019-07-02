@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import styles from './styles.module.scss'
-import {useSelector,useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Input from '../input';

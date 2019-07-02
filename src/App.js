@@ -3,7 +3,7 @@ import './App.css';
 import Home from './views/home';
 import BoardView from './views/board-view';
 import NewBoard from './views/new-board';
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import history from './app-history';
 import { ConnectedRouter } from 'connected-react-router'
 

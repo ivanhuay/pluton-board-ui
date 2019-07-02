@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBoardLists } from '../../actions/boards';
 import FormNewBoard from '../../components/form-new-board';
 import {createBoard} from '../../actions/boards'
 
