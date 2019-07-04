@@ -1,15 +1,17 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import Home from './views/home';
 import BoardView from './views/board-view';
 import NewBoard from './views/new-board';
 import {Route, Switch} from "react-router-dom";
 import history from './app-history';
-import { ConnectedRouter } from 'connected-react-router'
+import { ConnectedRouter } from 'connected-react-router';
+import Nav from './components/nav';
 
 function App() {
   return (
     <ConnectedRouter history={history}>
+        <Nav />
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/board/new" component={NewBoard}/>

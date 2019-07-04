@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Input from '../input';
 import PropTypes from 'prop-types';
-import Button from '../Button';
+import Button from '../button';
 const FormNewBoard = ({onSubmit}) => {
   const [value, setValue] = useState('');
   return (

@@ -1,0 +1,20 @@
+.nav{
+  background-color: black;
+  color: white;
+  height: 64px;
+  vertical-align: middle;
+  a{
+    color: white;
+    text-decoration: none;
+    vertical-align: bottom;
+  }
+  .flex-container{
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  .link{
+    height: 100%;
+    vertical-align: middle;
+  }
+}
