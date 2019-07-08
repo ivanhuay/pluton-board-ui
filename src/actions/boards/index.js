@@ -159,3 +159,40 @@ export const moveTicket = (boardId, ticketId, list) => {
       });
   }
 }
+
+
+export const requestIntegrateRepo = () => ({
+  type: 'REQUEST_INTEGRATE_REPO'
+});
+export const successIntegrateRepo = (data) => ({
+  type: 'SUCCESS_INTEGRATE_REPO',
+  data
+});
+export const errorIntegrateRepo = (data) => ({
+  type: 'ERROR_INTEGRATE_REPO',
+  data
+});
+
+export const addRepo = (boardId, repoName) => {
+  return (dispatch) => {
+    dispatch(requestIntegrateRepo());
+    return fetch(`${process.env.REACT_APP_API_URL}/api/integration/enable/${boardId}/${repoName}`,{
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        dispatch(successIntegrateRepo(data._id));
+        history.push(`/board/${boardId}`)
+      })
+      .catch((error)=>{
+        dispatch(errorIntegrateRepo(error.message));
+      });
+  }
+}

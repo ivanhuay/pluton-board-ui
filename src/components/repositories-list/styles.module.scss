@@ -1,0 +1,13 @@
+@import '../../styles/color.scss';
+.container{
+  margin: 0 -15px;
+  .item{
+    background-color: $grey;
+    padding: 15px;
+    margin-bottom: 10px;
+    .title a{
+      text-decoration: none;
+      color: $primary;
+    }
+  }
+}

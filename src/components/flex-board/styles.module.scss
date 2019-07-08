@@ -12,6 +12,7 @@ $white: #fefefe;
   .list-container{
     background-color: $grey-background;
     border-radius: 5px;
+    padding: 8px;
     padding-top: 2px;
   }
   .list{
@@ -32,6 +33,7 @@ $white: #fefefe;
     background-color: $grey-background;
     h3{
       padding: 10px 5px;
+      padding-bottom: 0;
     }
   }
 }

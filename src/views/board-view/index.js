@@ -23,7 +23,7 @@ const BoardView = ({match}) => {
         {
           !boards.loadingBoard
             ? <>
-                <BoardHeader toggleModal={()=>dispatch(toggleModal())} toggleNewTicket={ticketModal.toggle}/>
+                <BoardHeader toggleModal={()=>dispatch(toggleModal())} toggleNewTicket={ticketModal.toggle} boardId={match.params.boardId}/>
                 <h1>{boards.title}</h1>
                 < FlexBoard />
                 <Modal title="Add List" open={modal.isOpen} hide={()=>dispatch(toggleModal())} callback={(value)=>dispatch(addList(boards.data._id, value))}/>

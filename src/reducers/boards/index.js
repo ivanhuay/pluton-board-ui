@@ -13,7 +13,9 @@ const initialState = {
   movingItem: null,
   fromIndex: null,
   boardList: [],
-  loadingBoardList: true
+  loadingBoardList: true,
+  loadingIntegration: true,
+  errorIntegration: ''
 }
 export default function BoardsReducer(state = initialState, action) {
   switch (action.type) {
@@ -76,6 +78,23 @@ export default function BoardsReducer(state = initialState, action) {
       return {
         ...state,
         loadingCreateBoard: false
+      }
+    case 'REQUEST_INTEGRATE_REPO':
+      return {
+        ...state,
+        loadingIntegration: true,
+        errorIntegration: ''
+      }
+    case 'SUCCESS_INTEGRATE_REPO':
+      return {
+        ...state,
+        loadingIntegration: false
+      }
+    case 'ERROR_INTEGRATE_REPO':
+      return {
+        ...state,
+        loadingIntegration: false,
+        errorIntegration: action.data
       }
     default:
       return state;

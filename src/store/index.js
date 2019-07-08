@@ -8,7 +8,8 @@ import {
 } from 'redux';
 import {
   BoardsReducer,
-  ModalReducer
+  ModalReducer,
+  UserReducer
 } from '../reducers'
 
 
@@ -16,6 +17,7 @@ export const store = createStore(
   combineReducers({
     boards:BoardsReducer,
     modal:ModalReducer,
+    user: UserReducer,
     router: connectRouter(history)
   }),
   applyMiddleware(thunkMiddleware, logger)
